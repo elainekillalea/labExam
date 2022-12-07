@@ -5,32 +5,47 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EmployeeTest {
-    Employee employeePass = new Employee("Janedoe", 123412341234L);
-    Employee employeeFail = new Employee("Jane", 1234L);
+    private Employee e1;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
     }
 
     @Test
-    void nameTestPass(){
+    void testObjPass(){
+        Employee employeePass = new Employee("Janedoe", 123412341234L);
         assertEquals("Janedoe", employeePass.name);
     }
 
     @Test
-    void nameTestFail(){
+    void testObjFail(){
+        Employee employeeFail = new Employee("Jane", 1234L);
         assertEquals("Jane", employeeFail.name);
+    }
+
+    @Test
+    void nameTestPass(){
+        e1 = new Employee("Janedoe", 123412341234L);
+        assertEquals("Janedoe", e1.getName());
+    }
+
+    @Test
+    void nameTestFail(){
+        Exception exception = assertThrows(Exception.class, () -> e1.setName("Jane"));
+        assertEquals("Name must be at least 5 characters", exception.getMessage());
     }
 
 
     @Test
     void numTestPass(){
-        assertEquals(123412341234L, employeePass.number);
+        Employee e1 = new Employee("Janedoe", 123412341234L);
+        assertEquals(123412341234L, e1.getNumber());
     }
 
     @Test
     void numTestFail(){
-        assertEquals(1234L, employeeFail.number);
+        Exception exception = assertThrows(Exception.class, () -> e1.setNumber(12341234L));
+        assertEquals("Employee Number must be 12 digits", exception.getMessage());
     }
 
     @AfterEach
