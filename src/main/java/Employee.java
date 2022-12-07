@@ -12,12 +12,12 @@ public class Employee {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception {
         if(name.length() >= 5){
             this.name = name;
         }
         else{
-            System.out.println("Name must be at least 5 characters");
+            throw new Exception("Name must be at least 5 characters");
         }
     }
 
@@ -25,14 +25,14 @@ public class Employee {
         return number;
     }
 
-    public void setNumber(long number) {
+    public void setNumber(long number) throws Exception {
         int length = (int) (Math.log10(number) + 1);
 
         if(length == 12) {
             this.number = number;
         }
         else {
-            System.out.println("Employee Number must be 12 digits");
+            throw new Exception("Employee Number must be 12 digits");
         }
     }
 }
